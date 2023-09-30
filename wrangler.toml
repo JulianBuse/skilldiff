@@ -2,6 +2,9 @@ name = "skilldiff-api"
 main = "api/worker.ts"
 compatibility_date = "2023-09-30"
 
+[placement]
+mode = "smart"
+
 # # KV Namespace binding - For more information: https://developers.cloudflare.com/workers/runtime-apis/kv
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"

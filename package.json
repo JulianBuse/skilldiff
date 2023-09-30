@@ -5,14 +5,16 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port 5173",
-		"build": "tsc && vite build",
+		"build:pages": "tsc && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
-		"deploy": "wrangler publish",
+		"deploy:worker": "wrangler deploy",
+		"deploy:pages": "wrangler pages deploy dist --project-name skilldiff",
 		"start": "wrangler dev --port 8787",
 		"generate": "drizzle-kit generate:pg --schema=./api/db/schema.ts --out=./drizzle",
 		"up:dev": "node -r dotenv/config ./migrate.js",
-		"up:prod": "node -r dotenv/config ./migrate.js production"
+		"up:prod": "node -r dotenv/config ./migrate.js production",
+		"deploy": "npm run build:pages && npm run deploy:worker && npm run deploy:pages && npm run up:prod"
 	},
 	"dependencies": {
 		"@hono/trpc-server": "^0.1.0",
