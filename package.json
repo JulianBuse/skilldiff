@@ -4,17 +4,25 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --port 5173",
 		"build": "tsc && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"deploy": "wrangler publish",
-		"start": "wrangler dev"
+		"start": "wrangler dev --port 8787",
+		"generate": "drizzle-kit generate:pg --schema=./api/db/schema.ts --out=./drizzle",
+		"up:dev": "node -r dotenv/config ./migrate.js",
+		"up:prod": "node -r dotenv/config ./migrate.js production"
 	},
 	"dependencies": {
+		"@hono/trpc-server": "^0.1.0",
 		"@neondatabase/serverless": "^0.6.0",
+		"@trpc/client": "^10.38.5",
+		"@trpc/server": "^10.38.5",
+		"dotenv": "^16.3.1",
 		"drizzle-orm": "^0.28.6",
 		"hono": "^3.7.2",
+		"postgres": "^3.3.5",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	},
